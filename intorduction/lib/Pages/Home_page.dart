@@ -37,9 +37,9 @@ class HomePage extends StatelessWidget {
         BottomNavigationBarItem(
           label: "Busines",
           icon: Icon(
-            Icons.business,
+            Icons.book_online,
             size: 50.0,
-            color: Colors.black,
+            color: Colors.blueGrey,
           ),
         )
       ]),
