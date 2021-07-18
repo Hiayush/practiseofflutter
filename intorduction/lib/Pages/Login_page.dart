@@ -3,7 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intorduction/Pages/Home_page.dart';
 import 'package:intorduction/utlities/routess.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool changedbutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -19,7 +26,7 @@ class LoginPage extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              "Welcome",
+              "Welcome $name",
               style: GoogleFonts.pacifico(
                   fontWeight: FontWeight.bold,
                   fontSize: 40.0,
@@ -30,18 +37,27 @@ class LoginPage extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 100.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
               child: Column(
                 children: [
                   TextFormField(
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                         hintText: " Enter Username",
-                        labelText: "Usernmae",
+                        labelText: "Username",
                         hintStyle: TextStyle(fontSize: 15.0),
                         labelStyle: TextStyle(
                             fontSize: 40.0, fontWeight: FontWeight.bold)),
+                    cursorColor: Colors.blueAccent,
+                    onChanged: (
+                      value,
+                    ) {
+                      name = value;
+                      setState(() {});
+                    },
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: " Enter password",
@@ -53,16 +69,46 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    // hoverColor: Colors.deepPurpleAccent,
+                    onTap: () {
                       Navigator.pushNamed(context, Myroutes.homeRoutes);
+                      setState(() {
+                        changedbutton = true;
+                      });
                     },
-                    child: Text("Login"),
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        elevation: 20.0,
-                        minimumSize: Size(100, 40)),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 5),
+                      width: changedbutton?40:100,
+                      height: 40,
+                      child: changedbutton?Icon(Icons.done,color: Colors.white,):Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          // shape: changedbutton
+                          //     ? BoxShape.circle
+                          //     : BoxShape.rectangle,
+                          borderRadius:
+                              BorderRadius.circular(changedbutton ? 40 : 5),
+                          color: Colors.blueAccent),
+                    ),
                   )
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //
+                  //   },
+                  //   child: Text("Login"),
+                  //   style: TextButton.styleFrom(
+                  //       backgroundColor: Colors.blueAccent,
+                  //       elevation: 10.0,
+                  //       minimumSize: Size(100, 40)),
+                  // )
                 ],
               ),
             )
