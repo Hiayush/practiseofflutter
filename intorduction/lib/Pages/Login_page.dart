@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intorduction/Pages/Home_page.dart';
 import 'package:intorduction/utlities/routess.dart';
 
@@ -19,7 +20,7 @@ class LoginPage extends StatelessWidget {
             ),
             Text(
               "Welcome",
-              style: TextStyle(
+              style: GoogleFonts.pacifico(
                   fontWeight: FontWeight.bold,
                   fontSize: 40.0,
                   color: Colors.blue),
